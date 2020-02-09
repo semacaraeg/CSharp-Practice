@@ -20,7 +20,7 @@ namespace ProgramFlow
 
         static void Main(string[] args)
         {
-            Parallel.Invoke(()=>Task1(), ()=>Task2());
+            //  Parallel.Invoke(()=>Task1(), ()=>Task2());
             Console.WriteLine("Finished processing. Pressed any key to end.");
             Console.ReadKey();
         }
