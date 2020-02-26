@@ -3,17 +3,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Azure.ServiceBus;
-
+using AzureServiceBus;
 
 namespace SarahReceiverApp
 {
-    
     class Program
     {
-        // Connection String for the namespace can be obtained from the Azure portal under the 
-        // 'Shared Access policies' section.
-        const string ServiceBusConnectionString = "Endpoint=sb://sarahservicebus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=mSzpVDuDSN0tHF3qZsY3KS1h54ZMNpc1B3FS/ShIfX0=";
-        const string QueueName = "sarahqueue";
+          
         static IQueueClient queueClient;
 
         static void Main(string[] args)
@@ -23,7 +19,9 @@ namespace SarahReceiverApp
 
         static async Task MainAsync()
         {
-            queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
+            QueueConnection myconn = new QueueConnection();
+
+            queueClient = new QueueClient(myconn.ServiceBusConnectionString, myconn.QueueName);
 
             Console.WriteLine("======================================================");
             Console.WriteLine("Press ENTER key to exit after receiving all the messages.");

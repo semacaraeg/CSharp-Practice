@@ -3,18 +3,19 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Azure.ServiceBus;
-
+using AzureServiceBus;
 namespace SarahSenderApp
 {
     class Program
     {
-        const string ServiceBusConnectionString = "Endpoint=sb://sarahservicebus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=mSzpVDuDSN0tHF3qZsY3KS1h54ZMNpc1B3FS/ShIfX0=";
-        const string QueueName = "sarahqueue";
+        //const string ServiceBusConnectionString = "Endpoint=sb://sarahservicebus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=mSzpVDuDSN0tHF3qZsY3KS1h54ZMNpc1B3FS/ShIfX0=";
+        //const string QueueName = "sarahqueue";
         static IQueueClient queueClient;
         public static async Task Main(string[] args)
         {
-            const int numberOfMessages = 10;
-            queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
+            const int numberOfMessages = 20;
+            QueueConnection myconn = new QueueConnection();
+            queueClient = new QueueClient(myconn.ServiceBusConnectionString, myconn.QueueName);
 
             Console.WriteLine("======================================================");
             Console.WriteLine("Press ENTER key to exit after sending all the messages.");
